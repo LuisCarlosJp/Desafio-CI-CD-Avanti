@@ -149,7 +149,8 @@ jobs:
     name: Destroy Staging
     runs-on: ubuntu-latest
     # Executa apenas quando acionado manualmente (workflow_dispatch)
-    if: github.event_name == 'workflow_dispatch'
+    if: always() && github.event_name == 'workflow_dispatch'
+    needs: [deploy]
     environment: staging
     steps:
       - name: Checkout code
